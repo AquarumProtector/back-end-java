@@ -6,10 +6,10 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableCaching
-public class MottuguardApplication {
+public class AquarumProtectorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MottuguardApplication.class, args);
+		SpringApplication.run(AquarumProtectorApplication.class, args);
 	}
 
 }
