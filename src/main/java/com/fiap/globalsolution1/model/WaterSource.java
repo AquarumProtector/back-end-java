@@ -1,5 +1,6 @@
 package com.fiap.globalsolution1.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fiap.globalsolution1.model.enums.WaterSourceStatus;
 import com.fiap.globalsolution1.model.enums.WaterSourceType;
 import jakarta.persistence.*;
@@ -55,6 +56,7 @@ public class WaterSource {
     @NotNull(message = "O status não pode ser vazio")
     private WaterSourceStatus status  = WaterSourceStatus.Potavel;
 
-    @OneToMany(mappedBy = "waterSource", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "waterSource", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<WaterSourceUpdate> waterSourceUpdates;
 }

@@ -1,5 +1,6 @@
 package com.fiap.globalsolution1.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fiap.globalsolution1.model.enums.WaterSourceStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -14,27 +15,28 @@ public class WaterSourceUpdate
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @NotNull(message = "A data de atualização não pode ser vazia")
-    private LocalDateTime UpdateDate  = LocalDateTime.now();
+    private LocalDateTime updateDate  = LocalDateTime.now();
 
     @NotBlank(message = "A descrição não pode ser vazia")
-    private String Descricao;
+    private String descricao;
 
-    @NotBlank(message = "O status antigo não pode ser vazio")
-    private WaterSourceStatus OldStatus  = WaterSourceStatus.Potavel;
+    @NotNull(message = "O status antigo não pode ser vazio")
+    private WaterSourceStatus oldStatus  = WaterSourceStatus.Potavel;
 
-    @NotBlank(message = "O status não pode ser vazio")
-    private WaterSourceStatus Status  = WaterSourceStatus.Potavel;
+    @NotNull(message = "O status não pode ser vazio")
+    private WaterSourceStatus status  = WaterSourceStatus.Potavel;
 
-    @NotBlank(message = "A latitude não pode ser vazia")
-    private double Latitude;
+    @NotNull(message = "A latitude não pode ser vazia")
+    private double latitude;
 
-    @NotBlank(message = "A longitude não pode ser vazia")
-    private double Longitude;
+    @NotNull(message = "A longitude não pode ser vazia")
+    private double longitude;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "watersource_id")
+    @JsonBackReference
     private WaterSource waterSource;
 }

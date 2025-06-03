@@ -40,13 +40,10 @@ public class WaterSourceService {
         waterSourceToUpdate.setLatitude(waterSource.getLatitude());
         waterSourceToUpdate.setLongitude(waterSource.getLongitude());
         waterSourceToUpdate.setType(waterSource.getType());
-        waterSourceToUpdate.setCreatedById(waterSource.getCreatedById());
         waterSourceToUpdate.setLastInspected(waterSource.getLastInspected());
         waterSourceToUpdate.setActive(waterSource.isActive());
         waterSourceToUpdate.setStatus(waterSource.getStatus());
         waterSourceToUpdate.setUpdatedAt(LocalDateTime.now());
-
-        waterSourceToUpdate.setWaterSourceUpdates(waterSource.getWaterSourceUpdates());
 
         return waterSourceRepository.save(waterSourceToUpdate);
     }
