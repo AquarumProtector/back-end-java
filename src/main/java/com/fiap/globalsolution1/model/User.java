@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Table(name = "users")
+@Table(name = "tb_users")
 @Entity(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -65,7 +65,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
-
 }

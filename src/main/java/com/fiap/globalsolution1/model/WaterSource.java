@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "watersource")
+@Table(name = "tb_fonte_agua")
 public class WaterSource {
 
     @Id

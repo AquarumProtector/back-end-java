@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "watersourceupdate")
+@Table(name = "tb_atualizacao_fonte_agua")
 public class WaterSourceUpdate
 {
     @Id
