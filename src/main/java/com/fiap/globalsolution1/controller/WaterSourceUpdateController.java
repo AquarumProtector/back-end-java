@@ -1,6 +1,8 @@
 package com.fiap.globalsolution1.controller;
 
+import com.fiap.globalsolution1.dto.WaterSourceUpdateDTO;
 import com.fiap.globalsolution1.model.WaterSourceUpdate;
+import com.fiap.globalsolution1.model.enums.WaterSourceStatus;
 import com.fiap.globalsolution1.service.WaterSourceUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,15 +19,21 @@ public class WaterSourceUpdateController {
     private WaterSourceUpdateService waterSourceUpdateService;
 
     @GetMapping
-    public ResponseEntity<Page<WaterSourceUpdate>> getAllWaterSourceUpdates(Pageable pageable) {
-        Page<WaterSourceUpdate> updates = waterSourceUpdateService.getWaterSourceUpdates(pageable);
+    public ResponseEntity<Page<WaterSourceUpdateDTO>> getAllWaterSourceUpdates(Pageable pageable) {
+        Page<WaterSourceUpdateDTO> updates = waterSourceUpdateService.getWaterSourceUpdates(pageable);
         return ResponseEntity.ok(updates);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WaterSourceUpdate> getWaterSource(@PathVariable Long id) {
-        WaterSourceUpdate waterSourceUpdate = waterSourceUpdateService.getWaterSourceUpdateById(id);
+    public ResponseEntity<WaterSourceUpdateDTO> findById(@PathVariable Long id) {
+        WaterSourceUpdateDTO waterSourceUpdate = waterSourceUpdateService.getWaterSourceUpdateById(id);
         return ResponseEntity.ok(waterSourceUpdate);
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<Page<WaterSourceUpdateDTO>> getAllWaterSourceUpdatesByStatus(@PathVariable WaterSourceStatus status, Pageable pageable) {
+        Page<WaterSourceUpdateDTO> updates = waterSourceUpdateService.getWaterSourceUpdatesByStatus(status, pageable);;
+        return ResponseEntity.ok(updates);
     }
 
     @PostMapping

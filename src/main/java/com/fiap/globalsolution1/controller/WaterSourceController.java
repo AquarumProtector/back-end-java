@@ -1,6 +1,8 @@
 package com.fiap.globalsolution1.controller;
 
+import com.fiap.globalsolution1.dto.WaterSourceDTO;
 import com.fiap.globalsolution1.model.WaterSource;
+import com.fiap.globalsolution1.model.enums.WaterSourceType;
 import com.fiap.globalsolution1.repository.WaterSourceRepository;
 import com.fiap.globalsolution1.service.WaterSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +22,27 @@ public class WaterSourceController {
     private WaterSourceService waterSourceService;
 
     @GetMapping
-    public ResponseEntity<Page<WaterSource>> findAll(Pageable pageable){
-        Page<WaterSource> waterSources = waterSourceService.findAll(pageable);
+    public ResponseEntity<Page<WaterSourceDTO>> findAll(Pageable pageable){
+        Page<WaterSourceDTO> waterSources = waterSourceService.findAll(pageable);
         return ResponseEntity.ok(waterSources);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WaterSource> findById(@PathVariable Long id) {
-        WaterSource waterSource = waterSourceService.findById(id);
+    public ResponseEntity<WaterSourceDTO> findById(@PathVariable Long id) {
+        WaterSourceDTO waterSource = waterSourceService.findById(id);
         return ResponseEntity.ok(waterSource);
+    }
+
+    @GetMapping("/tipo/{type}")
+    public ResponseEntity<Page<WaterSourceDTO>> findAllByType(@PathVariable WaterSourceType type, Pageable pageable){
+        Page<WaterSourceDTO> waterSources = waterSourceService.findByType(type, pageable);
+        return ResponseEntity.ok(waterSources);
+    }
+
+    @GetMapping("/ativo/{isActive}")
+    public ResponseEntity<Page<WaterSourceDTO>> findAllByActive(@PathVariable boolean isActive, Pageable pageable){
+        Page<WaterSourceDTO> waterSources = waterSourceService.findByActive(isActive, pageable);
+        return ResponseEntity.ok(waterSources);
     }
 
     @PostMapping
